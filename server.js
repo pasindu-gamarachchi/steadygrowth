@@ -5,6 +5,11 @@ const app = express();
 const cors = require('cors');
 const logger = require('./utils/logger');
 
+const chartDataRouter = require('./routes/chartdata');
+
+app.use('/api/chartdata', chartDataRouter);
+
+
 /*
 app.use(expressWinston.logger({
     transports: [
