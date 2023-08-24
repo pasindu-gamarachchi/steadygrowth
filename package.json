@@ -1,0 +1,19 @@
+{
+  "name": "steadygrowth-server",
+  "version": "1.0.0",
+  "description": "Server for the SteadyGrowth app.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pasindu-gamarachchi/steadygrowth-server.git"
+  },
+  "author": "Pasindu Gamarachchi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pasindu-gamarachchi/steadygrowth-server/issues"
+  },
+  "homepage": "https://github.com/pasindu-gamarachchi/steadygrowth-server#readme"
+}
