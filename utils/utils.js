@@ -1,3 +1,5 @@
+const { log } = require('winston');
+const logger = require('../utils/logger');
 
 
 const isValidDateFormat = (dateString) => {
@@ -6,7 +8,58 @@ const isValidDateFormat = (dateString) => {
 
 }
 
+const isValidDateRange = (req)=> {
+    console.log(`Receieved ${req.params.symb}`);
+    console.log(`Receieved ${req.query.from}`);
+    console.log(`Receieved ${req.query.to}`);
+    // console.log(req);
+
+    if (!req.params.symb){
+        logger.error(`Missing stock symbol`);
+        return {
+            statusCode: 400,
+            errJson : {"isError": true, "errMsg": "Missing stock symbol" }
+        }
+    }
+
+    if (!req.query.from){
+        logger.error(`Missing from date`);
+        return {
+            statusCode: 400,
+            errJson : {"isError": true, "errMsg": "Missing from date" }
+        }
+    }
+    else if (!req.query.to){
+        logger.error(`Missing to date`);
+        return {
+            statusCode: 400, 
+            errJson: {"isError": true, "errMsg": "Missing to date" }
+        }
+    }
+
+
+    if (!isValidDateFormat(req.query.from)){
+        logger.error(`Invalid  from date ${req.query.from}`);
+        return {
+            statusCode: 400,
+            errJson: {"isError": true, "errMsg": "Invalid from date" }
+        }
+        // return res.status(400).json();
+    }
+
+    if (!isValidDateFormat(req.query.to)){
+        logger.error(`Invalid  to date`);
+        return {
+            statusCode: 400,
+            errJson : {"isError": true, "errMsg": "Invalid to date" }
+        }
+        // return res.status(400).json();
+    }
+    return false;
+}
+
 
 module.exports = {
-    isValidDateFormat
+    isValidDateFormat,
+    isValidDateRange
 }

@@ -3,40 +3,18 @@ const logger = require('../utils/logger');
 
 const knex = require('knex')(require('../knexfile'));
 const utils = require('../utils/utils');
-const { isValidDateFormat } = utils;
+const { isValidDateRange} = utils;
 
 
 const findRange = (req, res) => {
 
-
     logger.info(`Getting data for stock symbol : ${req.params.symb} for range : ${req.query.from} -> ${req.query.to}`);
+    const valDateRange  = isValidDateRange(req);
 
-    if (!req.params.symb){
-        logger.error(`Missing stock symbol`);
-        return res.status(400).json({"isError": true, "errMsg": "Missing stock symbol" });
+    if (valDateRange){
+        return res.status(valDateRange.statusCode).json(valDateRange.errJson);
+
     }
-
-    if (!req.query.from){
-        logger.error(`Missing from date`);
-        return res.status(400).json({"isError": true, "errMsg": "Missing from date" });
-    }
-    else if (!req.query.to){
-        logger.error(`Missing to date`);
-        return res.status(400).json({"isError": true, "errMsg": "Missing to date" });
-    }
-
-
-    if (!isValidDateFormat(req.query.from)){
-        logger.error(`Invalid  from date ${req.query.from}`);
-        return res.status(400).json({"isError": true, "errMsg": "Invalid from date" });
-    }
-
-    if (!isValidDateFormat(req.query.to)){
-        logger.error(`Invalid  to date`);
-        return res.status(400).json({"isError": true, "errMsg": "Invalid to date" });
-    }
-    
-
 
     knex(req.params.symb)
         .select(["Date", "Open", "High", "Low", "Close"])
