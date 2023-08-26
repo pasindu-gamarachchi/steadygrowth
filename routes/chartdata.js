@@ -8,6 +8,6 @@ chartDataRouter.route("/:symb")
 
 
 chartDataRouter.route("/ondate/:symb")
-    .get(chartDataController.findRange);
+    .get(chartDataController.onDate);
 
 module.exports = chartDataRouter;
