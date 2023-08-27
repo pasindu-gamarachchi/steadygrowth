@@ -9,10 +9,6 @@ const isValidDateFormat = (dateString) => {
 }
 
 const isValidDateRange = (req)=> {
-    console.log(`Receieved ${req.params.symb}`);
-    console.log(`Receieved ${req.query.from}`);
-    console.log(`Receieved ${req.query.to}`);
-    // console.log(req);
 
     if (!req.params.symb){
         logger.error(`Missing stock symbol`);
@@ -44,7 +40,6 @@ const isValidDateRange = (req)=> {
             statusCode: 400,
             errJson: {"isError": true, "errMsg": "Invalid from date" }
         }
-        // return res.status(400).json();
     }
 
     if (!isValidDateFormat(req.query.to)){
@@ -53,10 +48,10 @@ const isValidDateRange = (req)=> {
             statusCode: 400,
             errJson : {"isError": true, "errMsg": "Invalid to date" }
         }
-        // return res.status(400).json();
     }
     return false;
 }
+
 
 
 module.exports = {
