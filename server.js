@@ -5,22 +5,12 @@ const app = express();
 const cors = require('cors');
 const logger = require('./utils/logger');
 
-/*
-app.use(expressWinston.logger({
-    transports: [
-      new winston.transports.Console()
-    ],
-    format: winston.format.combine(
-      winston.format.colorize(),
-      winston.format.json()
-    ),
-    meta: false,
-    msg: "HTTP  ",
-    expressFormat: true,
-    colorize: false,
-    ignoreRoute: function (req, res) { return false; }
-  }));
-*/
+const chartDataRouter = require('./routes/chartData');
+const baseStatsRouter = require('./routes/baseStats');
+
+
+app.use('/api/chartdata', chartDataRouter);
+app.use('/api/baseStats', baseStatsRouter);
 
 const PORT = process.env.PORT || 5050;
 
