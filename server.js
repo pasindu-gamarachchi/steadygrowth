@@ -8,6 +8,7 @@ const logger = require('./utils/logger');
 const chartDataRouter = require('./routes/chartData');
 const baseStatsRouter = require('./routes/baseStats');
 const userRouter = require('./routes/users');
+const prefRouter = require('./routes/preferences');
 
 app.use(express.json());
 
@@ -15,6 +16,7 @@ app.use(express.json());
 app.use('/api/chartdata', chartDataRouter);
 app.use('/api/baseStats', baseStatsRouter);
 app.use('/api/users', userRouter);
+app.use('/api/preferences', prefRouter);
 
 const PORT = process.env.PORT || 5050;
 
