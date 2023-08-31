@@ -57,6 +57,30 @@ exports.up = function(knex) {
           .onUpdate("CASCADE")
           .onDelete("CASCADE")
       })
+      .createTable("portfolio", (table) => {
+        table.increments("port_id").primary();
+        table.integer("user_id").unsigned().notNullable();
+        table.integer("stock_id").unsigned().notNullable();
+        table.string('purchase_date').notNullable();
+        table.decimal('purchase_price').notNullable();
+        table.integer('purchase_shares').unsigned().notNullable();
+        table.timestamp("created_at").defaultTo(knex.fn.now());
+        table
+        .timestamp("updated_at")
+        .defaultTo(knex.raw("CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP"));
+        table
+          .foreign("user_id")
+          .references("id")
+          .inTable("user")
+          .onUpdate("CASCADE")
+          .onDelete("CASCADE")
+        table
+          .foreign("stock_id")
+          .references("stock_id")
+          .inTable("stock_metadata")
+          .onUpdate("CASCADE")
+          .onDelete("CASCADE")
+      })
   
 };
 
