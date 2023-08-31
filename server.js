@@ -11,8 +11,13 @@ const userRouter = require('./routes/users');
 const prefRouter = require('./routes/preferences');
 
 app.use(express.json());
+const TESTING = process.env.TESTING || false;
+const corsObj =  TESTING ?  { }:  { origin: process.env.CLIENT_HOST}
 
-
+app.use(cors(
+    corsObj
+    
+))
 app.use('/api/chartdata', chartDataRouter);
 app.use('/api/baseStats', baseStatsRouter);
 app.use('/api/users', userRouter);
@@ -20,13 +25,9 @@ app.use('/api/preferences', prefRouter);
 
 const PORT = process.env.PORT || 5050;
 
-app.use(express.static('./public'));
-const TESTING = process.env.TESTING || false;
-const corsObj =  TESTING ?  { }:  { origin: process.env.CLIENT_HOST}
 
-app.use(cors(
-    corsObj
-))
+
+app.use(express.static('./public'));
 
 
 
@@ -39,4 +40,6 @@ app.get('/', (req, res) => {
 app.listen(PORT, ()=> {
 
     logger.info(`🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 ------------- Server running on ${PORT} ------------ 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀`);
+    logger.info(`Testing : ${TESTING}`);
+    logger.info(`Cors obj : ${corsObj}`);
 })
