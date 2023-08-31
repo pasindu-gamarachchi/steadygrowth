@@ -52,9 +52,38 @@ const isValidDateRange = (req)=> {
     return false;
 }
 
+const isValidReqBody = (reqBody, requiredProps) =>{
+    let isValidBody = true;
+    requiredProps.forEach( (el) =>{
+        logger.info(`Validating req col : ${el}, ${el in reqBody}`);
+        if (!(el in reqBody)){
+            isValidBody = false;
+        }
+    }
+    );
+    return isValidBody;
+}
+
+const isInt = (num) => {
+    if ((String(num).trim()[0] === "+") || (String(num).trim()[0] === "-")) {
+      return false;
+    }
+    return (typeof (num) === 'number' || typeof (num) === "string" && num.trim() !== '') && !isNaN(num);
+  }
+
+const isPrice = (num) =>{
+    let regex  = /^\d+(?:\.\d{0,2})$/;
+    if (regex.test(num)){
+        return true;
+    }
+    return false;
+}
 
 
 module.exports = {
     isValidDateFormat,
-    isValidDateRange
+    isValidDateRange,
+    isValidReqBody,
+    isInt,
+    isPrice
 }
