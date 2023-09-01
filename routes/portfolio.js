@@ -6,6 +6,7 @@ const portfController = require('../controllers/portfolioController');
 portfRouter.route("/")
     .get(portfController.findIndPortfolio)
     .put(portfController.addIndPortfolio)
+    .patch(portfController.updateIndPortfolio)
 
 
 module.exports = portfRouter;
