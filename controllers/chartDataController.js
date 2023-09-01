@@ -3,7 +3,7 @@ const logger = require('../utils/logger');
 
 const knex = require('knex')(require('../knexfile'));
 const utils = require('../utils/utils');
-const { isValidDateRange} = utils;
+const { isValidDateRange, isValidDateFormat} = utils;
 
 
 const findRange = (req, res) => {
