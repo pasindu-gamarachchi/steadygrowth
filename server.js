@@ -9,6 +9,8 @@ const chartDataRouter = require('./routes/chartData');
 const baseStatsRouter = require('./routes/baseStats');
 const userRouter = require('./routes/users');
 const prefRouter = require('./routes/preferences');
+const portfRouter = require('./routes/portfolio');
+
 
 app.use(express.json());
 const TESTING = process.env.TESTING || false;
@@ -22,6 +24,8 @@ app.use('/api/chartdata', chartDataRouter);
 app.use('/api/baseStats', baseStatsRouter);
 app.use('/api/users', userRouter);
 app.use('/api/preferences', prefRouter);
+app.use('/api/portfolio', portfRouter);
+
 
 const PORT = process.env.PORT || 5050;
 
@@ -41,5 +45,4 @@ app.listen(PORT, ()=> {
 
     logger.info(`🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀 ------------- Server running on ${PORT} ------------ 🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀🚀`);
     logger.info(`Testing : ${TESTING}`);
-    logger.info(`Cors obj : ${corsObj}`);
 })
