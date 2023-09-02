@@ -10,6 +10,7 @@ const baseStatsRouter = require('./routes/baseStats');
 const userRouter = require('./routes/users');
 const prefRouter = require('./routes/preferences');
 const portfRouter = require('./routes/portfolio');
+const portCalcRouter = require("./routes/portfCalcs");
 
 
 app.use(express.json());
@@ -25,6 +26,7 @@ app.use('/api/baseStats', baseStatsRouter);
 app.use('/api/users', userRouter);
 app.use('/api/preferences', prefRouter);
 app.use('/api/portfolio', portfRouter);
+app.use('/api/portfolioCalcs', portCalcRouter)
 
 
 const PORT = process.env.PORT || 5050;
