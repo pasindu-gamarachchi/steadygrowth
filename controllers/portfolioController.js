@@ -56,7 +56,7 @@ const findIndPortfolio = (req, res) => {
 
 
     knex('portfolio')
-        .select(['port_id', 'user_id','stock_id', 'purchase_date', 'purchase_price', 'purchase_shares'])
+        .select(['port_id', 'user_id','stock_symbol', 'purchase_date', 'purchase_price', 'purchase_shares'])
         .where(
             {user_id: req.query.user_id}
         ).then((portf) => {
@@ -108,7 +108,7 @@ const addIndPortfolio = (req, res) =>{
         .insert(
             {
                 user_id: req.body.user_id,
-                stock_id: req.body.stock_id,
+                stock_symbol: req.body.stock_id,
                 purchase_date: req.body.purchase_date,
                 purchase_price: req.body.purchase_price,
                 purchase_shares: req.body.purchase_shares,
@@ -161,7 +161,7 @@ const updateIndPortfolio = (req, res) =>{
       if (!result) {
         return res
           .status(404)
-          .json(`Warehouse with ID: ${req.params.warehouseId} not found`);
+          .json(`Stock symbol with ID: ${req.body.stock_id} not found`);
       }
       //console.log(res);
       res.status(200).json(
