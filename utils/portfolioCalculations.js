@@ -18,7 +18,7 @@ const evaluatePortfolio =(portfRes) =>{
         elem.data.forEach((innerElem) =>{
             let summObj = {
                 date: innerElem.Date, 
-                stockValue: Math.round(innerElem.Close*elem.purchase_shares, 2), 
+                stockValue: innerElem.Close*elem.purchase_shares, 
                 closingPrice: innerElem.Close,
                 sharesPurched: elem.purchase_shares
             };
