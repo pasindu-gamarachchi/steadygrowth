@@ -106,4 +106,36 @@ const findUser = (req, res) =>{
 }
 
 
-module.exports = {registerUser, loginUser, findUser};
+
+const findUserPrefs = (req, res) =>{
+  if (!req.headers.authorization) {
+      return res.status(401).send("Please include your JWT");
+    }
+  
+    const authHeader = req.headers.authorization;
+    const authToken = authHeader.split(' ')[1];
+  
+  
+    jwt.verify(authToken, process.env.SECRET, (err, decoded) => {
+  
+      if (err) {
+        return res.status(401).send("Invalid auth token");
+      }
+      logger.info('Validating token');
+      knex('user')
+        .select(['stock_symbol'])
+        .join('user_preferences', 'user_preferences.user_id', 'user.id')
+        .where({ id: decoded.id })
+        .then(user => {
+          return res.status(200).json(user);
+        })
+        .catch(err => {
+          logger.error(`Err : ${err}`);
+          return res.send(500).send('Cant fetch user info');
+        })
+    });
+
+}
+
+
+module.exports = {registerUser, loginUser, findUser, findUserPrefs};

@@ -12,4 +12,7 @@ userRouter.route('/login')
 userRouter.route('/current')
     .get(userController.findUser);
 
+userRouter.route('/currentPreferences')
+    .get(userController.findUserPrefs);
+
 module.exports = userRouter;
