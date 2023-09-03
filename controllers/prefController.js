@@ -10,7 +10,7 @@ const findAll = (req, res) => {
 
 
     knex('user_preferences')
-        .select(['stock_id'])
+        .select(['stock_symbol'])
         .where(
             {user_id: req.query.user_id}
         ).then((prefs) => {
@@ -25,7 +25,7 @@ const findAll = (req, res) => {
 
 const addPreference = (req, res) => {
 
-    const requiredCols = ['user_id', 'stock_id', 'preference_description'];
+    const requiredCols = ['user_id', 'stock_symbol', 'preference_description'];
     let isValidBody = true
     requiredCols.forEach( (el) =>{
         if (!el in req.body){
@@ -45,7 +45,7 @@ const addPreference = (req, res) => {
         .insert(
             {
                 user_id: req.body.user_id,
-                stock_id: req.body.stock_id,
+                stock_symbol: req.body.stock_id,
                 preference_description: req.body.preference_description
             
             }
@@ -77,14 +77,14 @@ const removePreference = (req, res) => {
         return res.status(400).json({"isError": true, "errMsg": "Missing user_id"});
     }
 
-    if (!req.query.stock_id){
+    if (!req.query.stock_symbol){
         return res.status(400).json({"isError": true, "errMsg": "Missing stock_id"});
     }
     knex("user_preferences")
         .where(
             {
                 user_id: req.query.user_id,
-                stock_id: req.query.stock_id
+                stock_symbol: req.query.stock_symbol
             }
         )
         .del()
