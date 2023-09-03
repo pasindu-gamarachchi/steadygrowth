@@ -11,10 +11,10 @@ const generateSummary = (calcObj) =>{
     const percentiles = getPercentiles(calcObj.percentiles);
     //logger.info(`Percentiles : ${percentiles}`);
     const allStats = {
-        stdDev: calcObj["STDDEV(close)"],
+        stdDev: Number(calcObj["STDDEV(close)"].toFixed(2)),
         min: calcObj["MIN(close)"],
         max: calcObj["MAX(close)"],
-        avg: calcObj["AVG(close)"], 
+        avg: Number(calcObj["AVG(close)"].toFixed(2)), 
         median: percentiles.median, 
         _25perc: percentiles._25th,
         _75perc: percentiles._75th
