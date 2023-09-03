@@ -12,10 +12,12 @@ const findIndPortfolio = (user_id) => {
     }
 
     return knex('portfolio')
-        .select(['port_id', 'user_id','stock_id', 'purchase_date', 'purchase_price', 'purchase_shares'])
+        .select(['port_id', 'user_id','stock_symbol', 'purchase_date', 'purchase_price', 'purchase_shares'])
         .where(
             {user_id: user_id}
-        ).then((portf) => {
+        ).andWhere('purchase_shares', '>',  0)
+
+        then((portf) => {
             return portf
         }
         ).catch((err)=>{
@@ -53,7 +55,7 @@ const summary = (req, res)=>{
         const proms = []
         portfRes.forEach(element => {
             let p = new Promise((resolve, reject)=>{
-                resolve(getDataRange('aapl', element.purchase_date ,  '2020-04-01'))
+                resolve(getDataRange(element.stock_symbol, element.purchase_date ,  '2020-04-01')) // TODO UPDATE THIS
             })
             proms.push(p);
 
