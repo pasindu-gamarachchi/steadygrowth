@@ -14,7 +14,8 @@ const evaluatePortfolio =(portfRes) =>{
 
 
     portfRes.forEach((elem)=>{
-        let purchHistObj = {port_id: elem.port_id, stockSumm: []}
+
+        let purchHistObj = {port_id: elem.port_id, stock_symbol: elem.stock_symbol,   stockSumm: []}
         elem.data.forEach((innerElem) =>{
             let summObj = {
                 date: innerElem.Date, 

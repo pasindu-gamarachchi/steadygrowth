@@ -50,8 +50,10 @@ const getDataRange = (symb, from, to)=>{
 
 const summary = (req, res)=>{
     let port = findIndPortfolio(req.query.user_id);
+
     
     port.then((portfRes)=>{
+        //logger.info(portfRes);
         const proms = []
         portfRes.forEach(element => {
             let p = new Promise((resolve, reject)=>{
