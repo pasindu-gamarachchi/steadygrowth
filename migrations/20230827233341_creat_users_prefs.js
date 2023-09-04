@@ -42,7 +42,7 @@ exports.up = function(knex) {
           .onUpdate("CASCADE")
           .onDelete("CASCADE")
       })
-      .createTable("portfolio", (table) => {
+    .createTable("portfolio", (table) => {
         table.increments("port_id").primary();
         table.integer("user_id").unsigned().notNullable();
         table.string("stock_symbol").notNullable();
@@ -66,7 +66,318 @@ exports.up = function(knex) {
           .onUpdate("CASCADE")
           .onDelete("CASCADE")
       })
-  
+    .createTable("aapl",(table) => {
+       table.integer("index").unsigned();
+       table.string("Date");
+       table.decimal("Open");
+       table.decimal("High");
+       table.decimal("Low");
+       table.decimal("Close");
+       table.decimal("Adj Close");
+       table.string("Volume");
+       table.string("Symbol");
+       table.string("Nasdaq Traded");
+       table.string("Security Name");
+       table.string("Listing Exchange");
+       table.string("Market Category");
+       table.string("ETF");
+       table.decimal("Round Lot Size");
+       table.string("Test Issue");
+       table.string("Financial Status");
+       table.string("CQS Symbol");
+       table.string("NASDAQ Symbol");
+       table.string("NextShares");
+       table.decimal("daily_change");
+       table.decimal("abs_daily_change");
+    })
+    .createTable("amzn",(table) => {
+      table.integer("index").unsigned();
+      table.string("Date");
+      table.decimal("Open");
+      table.decimal("High");
+      table.decimal("Low");
+      table.decimal("Close");
+      table.decimal("Adj Close");
+      table.string("Volume");
+      table.string("Symbol");
+      table.string("Nasdaq Traded");
+      table.string("Security Name");
+      table.string("Listing Exchange");
+      table.string("Market Category");
+      table.string("ETF");
+      table.decimal("Round Lot Size");
+      table.string("Test Issue");
+      table.string("Financial Status");
+      table.string("CQS Symbol");
+      table.string("NASDAQ Symbol");
+      table.string("NextShares");
+      table.decimal("daily_change");
+      table.decimal("abs_daily_change");
+   })
+    .createTable("bp",(table) => {
+      table.integer("index").unsigned();
+      table.string("Date");
+      table.decimal("Open");
+      table.decimal("High");
+      table.decimal("Low");
+      table.decimal("Close");
+      table.decimal("Adj Close");
+      table.string("Volume");
+      table.string("Symbol");
+      table.string("Nasdaq Traded");
+      table.string("Security Name");
+      table.string("Listing Exchange");
+      table.string("Market Category");
+      table.string("ETF");
+      table.decimal("Round Lot Size");
+      table.string("Test Issue");
+      table.string("Financial Status");
+      table.string("CQS Symbol");
+      table.string("NASDAQ Symbol");
+      table.string("NextShares");
+      table.decimal("daily_change");
+      table.decimal("abs_daily_change");
+  })
+    .createTable("fb",(table) => {
+      table.integer("index").unsigned();
+      table.string("Date");
+      table.decimal("Open");
+      table.decimal("High");
+      table.decimal("Low");
+      table.decimal("Close");
+      table.decimal("Adj Close");
+      table.string("Volume");
+      table.string("Symbol");
+      table.string("Nasdaq Traded");
+      table.string("Security Name");
+      table.string("Listing Exchange");
+      table.string("Market Category");
+      table.string("ETF");
+      table.decimal("Round Lot Size");
+      table.string("Test Issue");
+      table.string("Financial Status");
+      table.string("CQS Symbol");
+      table.string("NASDAQ Symbol");
+      table.string("NextShares");
+      table.decimal("daily_change");
+      table.decimal("abs_daily_change");
+  })
+  .createTable("googl",(table) => {
+      table.integer("index").unsigned();
+      table.string("Date");
+      table.decimal("Open");
+      table.decimal("High");
+      table.decimal("Low");
+      table.decimal("Close");
+      table.decimal("Adj Close");
+      table.string("Volume");
+      table.string("Symbol");
+      table.string("Nasdaq Traded");
+      table.string("Security Name");
+      table.string("Listing Exchange");
+      table.string("Market Category");
+      table.string("ETF");
+      table.decimal("Round Lot Size");
+      table.string("Test Issue");
+      table.string("Financial Status");
+      table.string("CQS Symbol");
+      table.string("NASDAQ Symbol");
+      table.string("NextShares");
+      table.decimal("daily_change");
+      table.decimal("abs_daily_change");
+  })
+  .createTable("mdb",(table) => {
+      table.integer("index").unsigned();
+      table.string("Date");
+      table.decimal("Open");
+      table.decimal("High");
+      table.decimal("Low");
+      table.decimal("Close");
+      table.decimal("Adj Close");
+      table.string("Volume");
+      table.string("Symbol");
+      table.string("Nasdaq Traded");
+      table.string("Security Name");
+      table.string("Listing Exchange");
+      table.string("Market Category");
+      table.string("ETF");
+      table.decimal("Round Lot Size");
+      table.string("Test Issue");
+      table.string("Financial Status");
+      table.string("CQS Symbol");
+      table.string("NASDAQ Symbol");
+      table.string("NextShares");
+      table.decimal("daily_change");
+      table.decimal("abs_daily_change");
+  })
+  .createTable("msft",(table) => {
+    table.integer("index").unsigned();
+    table.string("Date");
+    table.decimal("Open");
+    table.decimal("High");
+    table.decimal("Low");
+    table.decimal("Close");
+    table.decimal("Adj Close");
+    table.string("Volume");
+    table.string("Symbol");
+    table.string("Nasdaq Traded");
+    table.string("Security Name");
+    table.string("Listing Exchange");
+    table.string("Market Category");
+    table.string("ETF");
+    table.decimal("Round Lot Size");
+    table.string("Test Issue");
+    table.string("Financial Status");
+    table.string("CQS Symbol");
+    table.string("NASDAQ Symbol");
+    table.string("NextShares");
+    table.decimal("daily_change");
+    table.decimal("abs_daily_change");
+  })
+  .createTable("net",(table) => {
+    table.integer("index").unsigned();
+    table.string("Date");
+    table.decimal("Open");
+    table.decimal("High");
+    table.decimal("Low");
+    table.decimal("Close");
+    table.decimal("Adj Close");
+    table.string("Volume");
+    table.string("Symbol");
+    table.string("Nasdaq Traded");
+    table.string("Security Name");
+    table.string("Listing Exchange");
+    table.string("Market Category");
+    table.string("ETF");
+    table.decimal("Round Lot Size");
+    table.string("Test Issue");
+    table.string("Financial Status");
+    table.string("CQS Symbol");
+    table.string("NASDAQ Symbol");
+    table.string("NextShares");
+    table.decimal("daily_change");
+    table.decimal("abs_daily_change");
+  })
+  .createTable("nflx",(table) => {
+    table.integer("index").unsigned();
+    table.string("Date");
+    table.decimal("Open");
+    table.decimal("High");
+    table.decimal("Low");
+    table.decimal("Close");
+    table.decimal("Adj Close");
+    table.string("Volume");
+    table.string("Symbol");
+    table.string("Nasdaq Traded");
+    table.string("Security Name");
+    table.string("Listing Exchange");
+    table.string("Market Category");
+    table.string("ETF");
+    table.decimal("Round Lot Size");
+    table.string("Test Issue");
+    table.string("Financial Status");
+    table.string("CQS Symbol");
+    table.string("NASDAQ Symbol");
+    table.string("NextShares");
+    table.decimal("daily_change");
+    table.decimal("abs_daily_change");
+  })
+  .createTable("shop",(table) => {
+    table.integer("index").unsigned();
+    table.string("Date");
+    table.decimal("Open");
+    table.decimal("High");
+    table.decimal("Low");
+    table.decimal("Close");
+    table.decimal("Adj Close");
+    table.string("Volume");
+    table.string("Symbol");
+    table.string("Nasdaq Traded");
+    table.string("Security Name");
+    table.string("Listing Exchange");
+    table.string("Market Category");
+    table.string("ETF");
+    table.decimal("Round Lot Size");
+    table.string("Test Issue");
+    table.string("Financial Status");
+    table.string("CQS Symbol");
+    table.string("NASDAQ Symbol");
+    table.string("NextShares");
+    table.decimal("daily_change");
+    table.decimal("abs_daily_change");
+  })
+  .createTable("su",(table) => {
+    table.integer("index").unsigned();
+    table.string("Date");
+    table.decimal("Open");
+    table.decimal("High");
+    table.decimal("Low");
+    table.decimal("Close");
+    table.decimal("Adj Close");
+    table.string("Volume");
+    table.string("Symbol");
+    table.string("Nasdaq Traded");
+    table.string("Security Name");
+    table.string("Listing Exchange");
+    table.string("Market Category");
+    table.string("ETF");
+    table.decimal("Round Lot Size");
+    table.string("Test Issue");
+    table.string("Financial Status");
+    table.string("CQS Symbol");
+    table.string("NASDAQ Symbol");
+    table.string("NextShares");
+    table.decimal("daily_change");
+    table.decimal("abs_daily_change");
+  })
+  .createTable("team",(table) => {
+    table.integer("index").unsigned();
+    table.string("Date");
+    table.decimal("Open");
+    table.decimal("High");
+    table.decimal("Low");
+    table.decimal("Close");
+    table.decimal("Adj Close");
+    table.string("Volume");
+    table.string("Symbol");
+    table.string("Nasdaq Traded");
+    table.string("Security Name");
+    table.string("Listing Exchange");
+    table.string("Market Category");
+    table.string("ETF");
+    table.decimal("Round Lot Size");
+    table.string("Test Issue");
+    table.string("Financial Status");
+    table.string("CQS Symbol");
+    table.string("NASDAQ Symbol");
+    table.string("NextShares");
+    table.decimal("daily_change");
+    table.decimal("abs_daily_change");
+  })
+  .createTable("tsla",(table) => {
+    table.integer("index").unsigned();
+    table.string("Date");
+    table.decimal("Open");
+    table.decimal("High");
+    table.decimal("Low");
+    table.decimal("Close");
+    table.decimal("Adj Close");
+    table.string("Volume");
+    table.string("Symbol");
+    table.string("Nasdaq Traded");
+    table.string("Security Name");
+    table.string("Listing Exchange");
+    table.string("Market Category");
+    table.string("ETF");
+    table.decimal("Round Lot Size");
+    table.string("Test Issue");
+    table.string("Financial Status");
+    table.string("CQS Symbol");
+    table.string("NASDAQ Symbol");
+    table.string("NextShares");
+    table.decimal("daily_change");
+    table.decimal("abs_daily_change");
+  })
 };
 
 /**
@@ -74,6 +385,7 @@ exports.up = function(knex) {
  * @returns { Promise<void> }
  */
 exports.down = function(knex) {
-  
+  table.increments("port_id").primary();
+
 };
 
