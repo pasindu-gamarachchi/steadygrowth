@@ -2,7 +2,7 @@ const { log } = require('winston');
 const logger = require('../utils/logger');
 const knex = require('knex')(require('../knexfile'));
 const utils = require('../utils/utils');
-const { evaluatePortfolio } = require('../utils/portfolioCalculations');
+const { evaluatePortfolio, evaluateSpendHistory, getSortedPortf } = require('../utils/portfolioCalculations');
 
 
 const findIndPortfolio = (user_id) => {
@@ -15,7 +15,7 @@ const findIndPortfolio = (user_id) => {
         .select(['port_id', 'user_id','stock_symbol', 'purchase_date', 'purchase_price', 'purchase_shares'])
         .where(
             {user_id: user_id}
-        ).andWhere('purchase_shares', '>',  0)
+        ).andWhere('purchase_shares', '>',  0) //TODO : USE ORDER BY purchase_date here
 
         then((portf) => {
             return portf
@@ -81,5 +81,25 @@ const summary = (req, res)=>{
     
 }
 
+const spend = (req, res) =>{
+    let port = findIndPortfolio(req.query.user_id);
+    port.then((portfRes)=>{
+        port = getSortedPortf(portfRes);
+        let p = new Promise((resolve, reject)=>{
+            resolve(getDataRange(port[0].stock_symbol, port[0].purchase_date ,  '2020-04-01')) // TODO UPDATE THIS
+        }).then((resp)=>{
+            // logger.info(p);
+            const dateRange  = resp.map(((elem)=>{
+                return {date : elem.Date, spend: ""};
+            }));
+            // evaluateSpendHistory
+            const spendHist = evaluateSpendHistory(portfRes,dateRange );
+            res.status(200).json(spendHist);
+        })
+        //res.status(200).json(evaluateSpendHistory(portfRes));
 
-module.exports = {summary};
+    })
+
+}
+
+module.exports = {summary, spend};

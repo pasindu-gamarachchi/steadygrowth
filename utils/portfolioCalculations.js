@@ -78,4 +78,84 @@ const getOldestDate = (dataArr) => {
 
 }
 
-module.exports = {evaluatePortfolio};
+const getSortedPortf = (dataArr) =>{
+    dataArr.sort((a,b) =>{
+        return new Date(a.purchase_date) - new Date(b.purchase_date);
+    }
+    )
+    return dataArr;
+
+}
+
+const generateDateArray= (startDateStr, endDateStr) =>{
+    /*REDUNDANT*/
+    const startDate = new Date(startDateStr);
+    const endDate = new Date(endDateStr);
+    const dateArray = [];
+    logger.info(startDate);
+    if (startDate > endDate) {
+      return dateArray;
+    }
+  
+    let currentDate = startDate;
+    let ind = 0;
+    while (currentDate <= endDate) {
+      const year = currentDate.getFullYear();
+      const month = String(currentDate.getMonth() + 1).padStart(2, '0');
+      const day = String(currentDate.getDate()).padStart(2, '0');
+      const dateString = `${year}-${month}-${day}`;
+      logger.info(dateString);
+      const spendObj = {date: dateString, spend: ""}
+      if (ind>0){
+        dateArray.push(spendObj);
+      }
+      ind ++;
+      // Move to the next day
+      currentDate.setDate(currentDate.getDate() + 1);
+    }
+  
+    return dateArray;
+  }
+
+
+const evaluateSpendHistory= (portHistObj, spendArr) =>{
+    //const oldestDate = getOldestDate(portHistObj);
+    const sortedPortHist = getSortedPortf(portHistObj)
+    //logger.info(`Oldest date : ${sortedPortHist}`);
+    //logger.info(`Oldest date : ${sortedPortHist[0].purchase_date}`);
+
+    const spendHistArr = [];
+    let sum = 0;
+    portHistObj.forEach((portElem)=>{
+        sum += portElem.purchase_shares * portElem.purchase_price;
+        spendHistObj = {
+            date : portElem.purchase_date, 
+            spend: sum
+        }
+        spendHistArr.push(spendHistObj);
+    });
+    //const spendArr = generateDateArray(sortedPortHist[0].purchase_date, "2020-04-01");
+    // const spendArr = generateDateArray("2020-03-25", "2020-04-01");
+    let currSum = 0
+
+    spendArr.forEach((spendElem)=>{
+        let spendOnDate = false;
+        for (let i=0; i< spendHistArr.length; i++){
+            if (spendElem.date === spendHistArr[i].date){
+                spendElem.spend = spendHistArr[i].spend;
+                currSum = spendHistArr[i].spend;
+                spendOnDate = true;
+                
+            }
+            
+        }
+        if (!spendOnDate){
+            spendElem.spend = currSum;
+        }
+    })
+
+    return spendArr;
+
+}
+
+module.exports = {evaluatePortfolio, evaluateSpendHistory, getSortedPortf};
