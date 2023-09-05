@@ -2,6 +2,11 @@ const logger = require('../utils/logger');
 
 const evaluatePortfolio =(portfRes) =>{
 
+    logger.info(portfRes);
+    if (portfRes.length===0){
+        return [];
+    }
+
     let dateArr = getOldestDate(portfRes);
     // logger.info(dateArr);
     let portfolioHist = []
@@ -11,7 +16,7 @@ const evaluatePortfolio =(portfRes) =>{
 
     }*/
     let portSumm = [];
-
+    
 
     portfRes.forEach((elem)=>{
 
@@ -32,10 +37,10 @@ const evaluatePortfolio =(portfRes) =>{
     )
     
     let sumArr = [];
-    let startingDates = portSumm.map((elem)=>{
-        return elem.stockSumm[0].date
-    }
-    );
+    //let startingDates = portSumm.map((elem)=>{
+    //    return elem.stockSumm[0].date
+    //}
+    //);
     //logger.info(startingDates);
     let sums = portSumm.map((elem)=>{
         return elem.stockSumm;

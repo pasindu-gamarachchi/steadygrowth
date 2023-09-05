@@ -57,7 +57,7 @@ const summary = (req, res)=>{
         const proms = []
         portfRes.forEach(element => {
             let p = new Promise((resolve, reject)=>{
-                resolve(getDataRange(element.stock_symbol, element.purchase_date ,  '2020-04-01')) // TODO UPDATE THIS
+                resolve(getDataRange(element.stock_symbol, element.purchase_date ,  '2023-09-04')) // TODO UPDATE THIS
             })
             proms.push(p);
 
@@ -87,8 +87,13 @@ const spend = (req, res) =>{
     let port = findIndPortfolio(req.query.user_id);
     port.then((portfRes)=>{
         port = getSortedPortf(portfRes);
+        logger.info(portfRes);
+        if (portfRes.length===0){
+            return res.status(200).json([]);
+
+        }
         let p = new Promise((resolve, reject)=>{
-            resolve(getDataRange(port[0].stock_symbol, port[0].purchase_date ,  '2020-04-01')) // TODO UPDATE THIS
+            resolve(getDataRange(port[0].stock_symbol, port[0].purchase_date ,  '2023-09-04')) // TODO UPDATE THIS
         }).then((resp)=>{
             // logger.info(p);
             const dateRange  = resp.map(((elem)=>{
