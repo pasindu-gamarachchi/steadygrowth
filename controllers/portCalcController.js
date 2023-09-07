@@ -57,7 +57,7 @@ const summary = (req, res)=>{
         const proms = []
         portfRes.forEach(element => {
             let p = new Promise((resolve, reject)=>{
-                resolve(getDataRange(element.stock_symbol, element.purchase_date ,  '2023-09-04')) // TODO UPDATE THIS
+                resolve(getDataRange(element.stock_symbol, element.purchase_date ,  '2023-09-07')) // TODO UPDATE THIS
             })
             proms.push(p);
 
@@ -93,7 +93,7 @@ const spend = (req, res) =>{
 
         }
         let p = new Promise((resolve, reject)=>{
-            resolve(getDataRange(port[0].stock_symbol, port[0].purchase_date ,  '2023-09-04')) // TODO UPDATE THIS
+            resolve(getDataRange(port[0].stock_symbol, port[0].purchase_date ,  '2023-09-07')) // TODO UPDATE THIS
         }).then((resp)=>{
             // logger.info(p);
             const dateRange  = resp.map(((elem)=>{
