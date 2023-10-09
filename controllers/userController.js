@@ -71,7 +71,7 @@ const loginUser = (req, res) =>{
       })
       .catch(err => {
         logger.error(`Error --> ${err}`);
-        res.status(400).send('Couldnt log you in');
+        res.status(400).send("Couldn't log you in");
       });
 }
 
